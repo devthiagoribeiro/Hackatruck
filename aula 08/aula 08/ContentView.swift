@@ -29,17 +29,18 @@ struct ContentView: View {
                     ScrollView{
                         VStack (alignment: .leading){
                             ForEach(viewModel.chars){ index in
-                                    NavigationLink(destination: tela02()){
+                                NavigationLink(destination: tela02(imagem: index.image!, name: index.name!, hairColour: index.hairColour!)){
                                         HStack(alignment: .center){
                                             AsyncImage(url: URL(string: index.image!)){result in
                                                 result
                                                     .resizable()
-                                                    .scaledToFit()
+                                                    .frame(width: 100, height: 100)
+                                                .clipShape(Circle())
                                             }placeholder: {
-                                                
+                                                Circle()
+                                                    .foregroundColor(.gray)
                                             }
-                                            .frame(width:100)
-                                            .clipShape(Circle())
+                                            .frame(height:100)
                                             Text(index.name!)
                                                 .foregroundColor(.white)
                                                 .bold()
@@ -47,8 +48,8 @@ struct ContentView: View {
                                     }
                             }
                         }
+                        .padding()
                     }
-                    .frame(width: .infinity)
                 }
                 
             }
